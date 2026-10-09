@@ -104,11 +104,25 @@ def main():
     sat_df = pd.read_csv(sat_path) if sat_path.exists() else None
     base_df = pd.read_csv(base_path) if base_path.exists() else None
 
+    if sat_df is None:
+        print(f"[plot] SAT results not found: {sat_path} (skipped SAT figures)")
+    if base_df is None:
+        print(f"[plot] baseline results not found: {base_path} "
+              "(skipped baseline figures)")
+
+    written = []
     if sat_df is not None:
-        plot_time_vs_n(sat_df, args.outdir)
-        plot_encoding_comparison(sat_df, args.outdir)
+        written += [
+            plot_time_vs_n(sat_df, args.outdir),
+            plot_encoding_comparison(sat_df, args.outdir),
+        ]
     if sat_df is not None and base_df is not None:
-        plot_method_comparison(sat_df, base_df, args.outdir)
+        written.append(plot_method_comparison(sat_df, base_df, args.outdir))
+
+    if not any(written):
+        print("No figures produced. Run a benchmark first, e.g.:\n"
+              "  python -m nqueens bench --what all --ns 8:40:2")
+        return
     print("Figures written to", args.outdir)
 
 
