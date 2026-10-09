@@ -50,7 +50,12 @@ Python 3.11:
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+pip install -e .
 ```
+
+The last step installs the `nqueens` package (src-layout) in editable mode and
+registers the `nqueens` command; without it `python -m nqueens` fails with
+`No module named nqueens`. Alternatively, set `PYTHONPATH=src`.
 
 PySAT, OR-Tools, PuLP, CBC and SCIP work out of the box. Gurobi and CPLEX need a
 free academic license to lift their size limits (see below).
