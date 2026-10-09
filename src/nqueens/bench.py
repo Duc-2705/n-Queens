@@ -6,7 +6,7 @@ from pathlib import Path
 import pandas as pd
 
 from .baselines import BASELINES, run_baseline
-from .sat_solver import SUPPORTED_SOLVERS, solve_sat
+from .sat_solver import DEFAULT_SOLVERS, SUPPORTED_SOLVERS, solve_sat, solve_sat_isolated
 
 DEFAULT_ENCODINGS = [
     "pairwise", "binary", "commander", "product", "sequential",
@@ -33,9 +33,10 @@ def parse_ns(spec):
 
 
 def run_sat_bench(ns, encodings=None, solvers=None, diagonal_mode="optimal",
-                  repeats=1):
+                  repeats=1, isolate=True, timeout=None):
     encodings = encodings or DEFAULT_ENCODINGS
     solvers = solvers or ["glucose3", "cadical153", "kissat404"]
+    solve = solve_sat_isolated if isolate else solve_sat
 
     rows = []
     for n in ns:
@@ -51,16 +52,16 @@ def run_sat_bench(ns, encodings=None, solvers=None, diagonal_mode="optimal",
                         "propagations": None, "conflicts": None, "note": "",
                     }
                     try:
-                        res = solve_sat(n, encoding=encoding,
-                                        solver_name=solver,
-                                        diagonal_mode=diagonal_mode)
+                        kwargs = {} if not isolate else {"timeout": timeout}
+                        res = solve(n, encoding=encoding, solver_name=solver,
+                                    diagonal_mode=diagonal_mode, **kwargs)
                         row.update(
                             status=res.status, build_time=res.build_time,
                             solve_time=res.solve_time, time=res.time,
                             nv=res.nv, nclauses=res.nclauses,
                             decisions=res.decisions,
                             propagations=res.propagations,
-                            conflicts=res.conflicts,
+                            conflicts=res.conflicts, note=res.note,
                         )
                     except Exception as exc:  # noqa: BLE001
                         row["note"] = f"{type(exc).__name__}: {exc}"

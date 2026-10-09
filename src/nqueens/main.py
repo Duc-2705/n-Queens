@@ -11,7 +11,12 @@ from .bench import (
     save,
 )
 from .encodings import ALL_ENCODINGS
-from .sat_solver import SUPPORTED_SOLVERS, solve_sat
+from .sat_solver import (
+    DEFAULT_SOLVERS,
+    SUPPORTED_SOLVERS,
+    probe_solvers,
+    solve_sat_isolated,
+)
 from .verify import KNOWN_SOLUTION_COUNTS, count_solutions, is_valid_board
 
 
@@ -21,18 +26,22 @@ def _print_board(board):
 
 
 def cmd_solve(args):
-    res = solve_sat(args.n, encoding=args.encoding, solver_name=args.solver,
-                    diagonal_mode=args.diagonal)
+    res = solve_sat_isolated(args.n, encoding=args.encoding,
+                             solver_name=args.solver,
+                             diagonal_mode=args.diagonal,
+                             timeout=args.time_limit)
     print(f"n={res.n} encoding={res.encoding} solver={res.solver} "
           f"diagonal={res.diagonal_mode}")
     print(f"status={res.status} time={res.time:.4f}s "
           f"(build={res.build_time:.4f}, solve={res.solve_time:.4f})")
-    print(f"vars={res.nv} clauses={res.nclauses} "
-          f"decisions={res.decisions} propagations={res.propagations} "
-          f"conflicts={res.conflicts}")
-    if res.board:
+    if res.status == "sat":
+        print(f"vars={res.nv} clauses={res.nclauses} "
+              f"decisions={res.decisions} propagations={res.propagations} "
+              f"conflicts={res.conflicts}")
         _print_board(res.board)
         print("valid:", is_valid_board(res.board))
+    elif res.note:
+        print("note:", res.note)
 
 
 def cmd_count(args):
@@ -49,7 +58,8 @@ def cmd_bench(args):
     if args.what in ("sat", "all"):
         df = run_sat_bench(ns, encodings=args.encodings,
                            solvers=args.solvers, diagonal_mode=args.diagonal,
-                           repeats=args.repeats)
+                           repeats=args.repeats, isolate=not args.no_isolate,
+                           timeout=args.time_limit)
         print("wrote", save(df, args.sat_out))
     if args.what in ("baselines", "all"):
         methods = args.methods or list(BASELINES)
@@ -57,6 +67,14 @@ def cmd_bench(args):
                                 time_limit=args.time_limit,
                                 repeats=args.repeats)
         print("wrote", save(df, args.baseline_out))
+
+
+def cmd_probe(args):
+    solvers = args.solvers or DEFAULT_SOLVERS
+    report = probe_solvers(solvers, n=args.n, timeout=args.time_limit or 30)
+    print(f"{'solver':<16} status")
+    for name, status in report.items():
+        print(f"{name:<16} {status}")
 
 
 def cmd_plot(args):
@@ -85,6 +103,8 @@ def build_parser():
                          choices=SUPPORTED_SOLVERS)
     p_solve.add_argument("--diagonal", default="optimal",
                          choices=["naive", "optimal"])
+    p_solve.add_argument("--time-limit", type=float, default=None,
+                         help="timeout in seconds for the solver subprocess")
     p_solve.set_defaults(func=cmd_solve)
 
     p_count = sub.add_parser("count", help="Count all solutions for small n.")
@@ -110,9 +130,17 @@ def build_parser():
                          choices=["naive", "optimal"])
     p_bench.add_argument("--time-limit", type=float, default=None)
     p_bench.add_argument("--repeats", type=int, default=1)
+    p_bench.add_argument("--no-isolate", action="store_true",
+                         help="run SAT solvers in-process (a crash aborts the run)")
     p_bench.add_argument("--sat-out", default="results/sat.csv")
     p_bench.add_argument("--baseline-out", default="results/baselines.csv")
     p_bench.set_defaults(func=cmd_bench)
+
+    p_probe = sub.add_parser("probe", help="Check which SAT solvers work here.")
+    p_probe.add_argument("--solvers", nargs="*", default=None)
+    p_probe.add_argument("--n", type=int, default=6)
+    p_probe.add_argument("--time-limit", type=float, default=None)
+    p_probe.set_defaults(func=cmd_probe)
 
     p_plot = sub.add_parser("plot", help="Generate figures from CSV results.")
     p_plot.add_argument("--sat", default="results/sat.csv")
