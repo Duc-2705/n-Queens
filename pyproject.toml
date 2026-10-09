@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nqueens"
+version = "0.1.0"
+description = "N-Queens via SAT encoding (PySAT) and exact solvers (MIP/CP)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "Truong Dinh Duc", email = "truongdinhduc06@gmail.com" }]
+dependencies = [
+    "python-sat>=1.8",
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "tabulate",
+]
+
+[project.optional-dependencies]
+baselines = ["ortools", "pulp", "mip", "cplex", "docplex", "gurobipy"]
+dev = ["pytest"]
+
+[project.scripts]
+nqueens = "nqueens.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
