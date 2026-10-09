@@ -1,0 +1,18 @@
+python-sat>=1.8
+numpy
+pandas
+matplotlib
+tabulate
+
+# Exact baselines
+ortools
+pulp
+mip
+
+# Commercial solvers (require academic license)
+cplex
+docplex
+gurobipy
+
+# Testing
+pytest
