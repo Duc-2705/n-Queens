@@ -88,6 +88,20 @@ python -m nqueens plot --sat results/sat.csv --baselines results/baselines.csv `
 
 `--ns` accepts a comma list (`8,10,12`) or a range (`8:40:2` = start:stop:step).
 
+Check which SAT solvers work in your environment (each is tried in a child
+process, so a crashing solver is reported instead of aborting):
+
+```powershell
+python -m nqueens probe
+```
+
+> **Solver notes.** SAT solving runs in an isolated subprocess, so a native
+> crash or timeout is recorded as `status=crash`/`status=timeout` rather than
+> killing the benchmark. On the current Windows build `kissat404` segfaults on
+> N-Queens instances and `cryptosat`/`minisatgh` are not shipped in the wheel;
+> the remaining solvers (CaDiCaL, Glucose, MergeSAT, MiniCard, MiniSat,
+> Lingeling) work. Use `--no-isolate` only for known-good solvers.
+
 ## Academic licenses (mandatory for large n)
 
 For n up to ~100 the models exceed the size limits of the free default engines
