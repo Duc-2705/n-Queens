@@ -27,3 +27,9 @@ results/*.log
 .idea/
 .DS_Store
 Thumbs.db
+
+# Licenses / secrets (never commit)
+*.lic
+gurobi.lic
+gurobi.env
+.env
