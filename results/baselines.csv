@@ -1,0 +1,135 @@
+method,n,rep,status,time,nv,nconstraints,objective,note
+cpsat,8,0,sat,0.023198300001240568,64.0,42.0,,
+mip_scip,8,0,sat,0.02954709999903571,64.0,42.0,,
+mip_cbc,8,0,sat,0.04169049999836716,64.0,42.0,,
+pulp_cbc,8,0,sat,0.06117939999967348,64.0,42.0,,
+gurobi,8,0,sat,0.00463329999911366,64.0,42.0,,
+cplex_mp,8,0,sat,0.03255150000040885,64.0,42.0,0.0,
+cplex_cp,8,0,sat,0.050696300000709016,64.0,0.0,,
+cpsat,10,0,sat,0.02228610000020126,100.0,54.0,,
+mip_scip,10,0,sat,0.006506000001536449,100.0,54.0,,
+mip_cbc,10,0,sat,0.020431200002349215,100.0,54.0,,
+pulp_cbc,10,0,sat,0.08211740000115242,100.0,54.0,,
+gurobi,10,0,sat,0.00016999999934341758,100.0,54.0,,
+cplex_mp,10,0,sat,0.00812210000003688,100.0,54.0,0.0,
+cplex_cp,10,0,sat,0.040805399999953806,100.0,0.0,,
+cpsat,12,0,sat,0.017550299999129493,144.0,66.0,,
+mip_scip,12,0,sat,0.011803499997768085,144.0,66.0,,
+mip_cbc,12,0,sat,0.01704009999957634,144.0,66.0,,
+pulp_cbc,12,0,sat,0.0659525000010035,144.0,66.0,,
+gurobi,12,0,sat,0.00024959999791462906,144.0,66.0,,
+cplex_mp,12,0,sat,0.00843430000168155,144.0,66.0,0.0,
+cplex_cp,12,0,sat,0.039535400002932874,144.0,0.0,,
+cpsat,14,0,sat,0.01373310000053607,196.0,78.0,,
+mip_scip,14,0,sat,0.016709400002582697,196.0,78.0,,
+mip_cbc,14,0,sat,0.024458099996991223,196.0,78.0,,
+pulp_cbc,14,0,sat,0.08853679999810993,196.0,78.0,,
+gurobi,14,0,sat,0.00020009999934700318,196.0,78.0,,
+cplex_mp,14,0,sat,0.010487600000487873,196.0,78.0,0.0,
+cplex_cp,14,0,sat,0.04941740000140271,196.0,0.0,,
+cpsat,16,0,sat,0.021059800001239637,256.0,90.0,,
+mip_scip,16,0,sat,0.07426209999903222,256.0,90.0,,
+mip_cbc,16,0,sat,1.917745200000354,256.0,90.0,,
+pulp_cbc,16,0,sat,3.0431586999984575,256.0,90.0,,
+gurobi,16,0,sat,0.0002567000010458287,256.0,90.0,,
+cplex_mp,16,0,sat,0.009528100003080908,256.0,90.0,0.0,
+cplex_cp,16,0,sat,0.06086370000048191,256.0,0.0,,
+cpsat,18,0,sat,0.033996900001511676,324.0,102.0,,
+mip_scip,18,0,sat,0.025797400001465576,324.0,102.0,,
+mip_cbc,18,0,sat,0.030818899998848792,324.0,102.0,,
+pulp_cbc,18,0,sat,0.083796999999322,324.0,102.0,,
+gurobi,18,0,sat,0.00035149999894201756,324.0,102.0,,
+cplex_mp,18,0,sat,0.009826299999986077,324.0,102.0,0.0,
+cplex_cp,18,0,sat,0.0528121999996074,324.0,0.0,,
+cpsat,20,0,sat,0.02624619999915012,400.0,114.0,,
+mip_scip,20,0,sat,0.05137720000129775,400.0,114.0,,
+mip_cbc,20,0,sat,0.06030879999889294,400.0,114.0,,
+pulp_cbc,20,0,sat,0.12497520000033546,400.0,114.0,,
+gurobi,20,0,sat,0.0004152999972575344,400.0,114.0,,
+cplex_mp,20,0,sat,0.010175499999604654,400.0,114.0,0.0,
+cplex_cp,20,0,sat,0.08723730000201613,400.0,0.0,,
+cpsat,22,0,sat,0.03360639999664272,484.0,126.0,,
+mip_scip,22,0,sat,0.047369500000058906,484.0,126.0,,
+mip_cbc,22,0,sat,0.09003889999803505,484.0,126.0,,
+pulp_cbc,22,0,sat,0.1321345999967889,484.0,126.0,,
+gurobi,22,0,sat,0.00033289999919361435,484.0,126.0,,
+cplex_mp,22,0,sat,0.01286170000093989,484.0,126.0,0.0,
+cplex_cp,22,0,sat,0.0737321000015072,484.0,0.0,,
+cpsat,24,0,sat,0.03225889999885112,576.0,138.0,,
+mip_scip,24,0,sat,0.07691269999850192,576.0,138.0,,
+mip_cbc,24,0,sat,0.066040100002283,576.0,138.0,,
+pulp_cbc,24,0,sat,0.15879629999835743,576.0,138.0,,
+gurobi,24,0,sat,0.000501599999552127,576.0,138.0,,
+cplex_mp,24,0,sat,0.011578800000279443,576.0,138.0,0.0,
+cplex_cp,24,0,sat,0.07979749999867636,576.0,0.0,,
+cpsat,26,0,sat,0.037026199999672826,676.0,150.0,,
+mip_scip,26,0,sat,0.04468710000219289,676.0,150.0,,
+mip_cbc,26,0,sat,0.12459889999809093,676.0,150.0,,
+pulp_cbc,26,0,sat,0.13320970000131638,676.0,150.0,,
+gurobi,26,0,sat,0.0004785999990417622,676.0,150.0,,
+cplex_mp,26,0,sat,0.013695000001462176,676.0,150.0,0.0,
+cplex_cp,26,0,sat,0.09060930000123335,676.0,0.0,,
+cpsat,28,0,sat,0.05259750000186614,784.0,162.0,,
+mip_scip,28,0,sat,1.6938744999970368,784.0,162.0,,
+mip_cbc,28,0,sat,0.1145676000014646,784.0,162.0,,
+pulp_cbc,28,0,sat,0.15826659999947879,784.0,162.0,,
+gurobi,28,0,sat,0.0005444999987957999,784.0,162.0,,
+cplex_mp,28,0,sat,0.014095300000917632,784.0,162.0,0.0,
+cplex_cp,28,0,sat,0.09090980000109994,784.0,0.0,,
+cpsat,30,0,sat,0.050534400001197355,900.0,174.0,,
+mip_scip,30,0,sat,0.06488959999842336,900.0,174.0,,
+mip_cbc,30,0,sat,0.39296720000129426,900.0,174.0,,
+pulp_cbc,30,0,sat,0.33498340000005555,900.0,174.0,,
+gurobi,30,0,sat,0.0006661999977950472,900.0,174.0,,
+cplex_mp,30,0,sat,0.014873299998725997,900.0,174.0,0.0,
+cplex_cp,30,0,sat,0.10114229999817326,900.0,0.0,,
+cpsat,32,0,sat,0.05781770000248798,1024.0,186.0,,
+mip_scip,32,0,sat,0.0987767000005988,1024.0,186.0,,
+mip_cbc,32,0,sat,0.1189174000028288,1024.0,186.0,,
+pulp_cbc,32,0,sat,0.3149212999996962,1024.0,186.0,,
+gurobi,32,0,sat,0.0006031000011716969,1024.0,186.0,,
+cplex_mp,32,0,error,,,,,"DOcplexLimitsExceeded: **** Promotional version. Problem size limits (1000 vars, 1000 consts) exceeded, model has 1024 vars, 186 consts, CPLEX code=1016"
+cplex_cp,32,0,error,,,,,"CpoSolverException: Solver error: Problem size limit exceeded.
+CP Optimizer Community Edition solves problems with search spaces up to 2^1000.
+Unrestricted version options (including academia) at https://ibm.biz/error1016
+"
+cpsat,34,0,sat,0.08990619999894989,1156.0,198.0,,
+mip_scip,34,0,sat,0.1715087999982643,1156.0,198.0,,
+mip_cbc,34,0,sat,0.20316290000118897,1156.0,198.0,,
+pulp_cbc,34,0,sat,0.23541620000105468,1156.0,198.0,,
+gurobi,34,0,sat,0.00105249999978696,1156.0,198.0,,
+cplex_mp,34,0,error,,,,,"DOcplexLimitsExceeded: **** Promotional version. Problem size limits (1000 vars, 1000 consts) exceeded, model has 1156 vars, 198 consts, CPLEX code=1016"
+cplex_cp,34,0,error,,,,,"CpoSolverException: Solver error: Problem size limit exceeded.
+CP Optimizer Community Edition solves problems with search spaces up to 2^1000.
+Unrestricted version options (including academia) at https://ibm.biz/error1016
+"
+cpsat,36,0,sat,0.11731130000043777,1296.0,210.0,,
+mip_scip,36,0,sat,2.1120344000009936,1296.0,210.0,,
+mip_cbc,36,0,sat,0.34042799999951967,1296.0,210.0,,
+pulp_cbc,36,0,sat,0.29079249999995227,1296.0,210.0,,
+gurobi,36,0,sat,0.0008295000006910414,1296.0,210.0,,
+cplex_mp,36,0,error,,,,,"DOcplexLimitsExceeded: **** Promotional version. Problem size limits (1000 vars, 1000 consts) exceeded, model has 1296 vars, 210 consts, CPLEX code=1016"
+cplex_cp,36,0,error,,,,,"CpoSolverException: Solver error: Problem size limit exceeded.
+CP Optimizer Community Edition solves problems with search spaces up to 2^1000.
+Unrestricted version options (including academia) at https://ibm.biz/error1016
+"
+cpsat,38,0,sat,0.10242980000111856,1444.0,222.0,,
+mip_scip,38,0,sat,0.2533923999981198,1444.0,222.0,,
+mip_cbc,38,0,sat,0.5639298999994935,1444.0,222.0,,
+pulp_cbc,38,0,sat,0.2880537999990338,1444.0,222.0,,
+gurobi,38,0,sat,0.0008928999995987397,1444.0,222.0,,
+cplex_mp,38,0,error,,,,,"DOcplexLimitsExceeded: **** Promotional version. Problem size limits (1000 vars, 1000 consts) exceeded, model has 1444 vars, 222 consts, CPLEX code=1016"
+cplex_cp,38,0,error,,,,,"CpoSolverException: Solver error: Problem size limit exceeded.
+CP Optimizer Community Edition solves problems with search spaces up to 2^1000.
+Unrestricted version options (including academia) at https://ibm.biz/error1016
+"
+cpsat,40,0,sat,0.11289960000067367,1600.0,234.0,,
+mip_scip,40,0,sat,2.39561269999831,1600.0,234.0,,
+mip_cbc,40,0,sat,0.3640859000006458,1600.0,234.0,,
+pulp_cbc,40,0,sat,0.4176281999971252,1600.0,234.0,,
+gurobi,40,0,sat,0.0009253999996872153,1600.0,234.0,,
+cplex_mp,40,0,error,,,,,"DOcplexLimitsExceeded: **** Promotional version. Problem size limits (1000 vars, 1000 consts) exceeded, model has 1600 vars, 234 consts, CPLEX code=1016"
+cplex_cp,40,0,error,,,,,"CpoSolverException: Solver error: Problem size limit exceeded.
+CP Optimizer Community Edition solves problems with search spaces up to 2^1000.
+Unrestricted version options (including academia) at https://ibm.biz/error1016
+"
