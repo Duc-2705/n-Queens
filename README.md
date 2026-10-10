@@ -152,43 +152,6 @@ many `clauses`, while `sequential` adds auxiliary variables (`vars` grows) yet
 uses fewer clauses - the classic trade-off between "many clauses" and
 "intermediate variables".
 
-### Giải thích chỉ số (Tiếng Việt)
-
-**Log SAT**
-
-| Chỉ số | Ý nghĩa |
-|---|---|
-| `[i/total]` | Tiến độ: lần chạy thứ *i*/tổng |
-| `n` | Kích thước bàn cờ (n x n) |
-| `enc` | Kiểu mã hoá AMO (pairwise/binary/commander/product/sequential/...) |
-| `solver` | SAT solver (glucose3, cadical153, ...) |
-| `rep` | Lần lặp thứ mấy (chỉ hiện khi `--repeats > 1`) |
-| `status` | `sat` (có nghiệm), `unsat` (vô nghiệm), `crash` (segfault), `timeout`, `error` |
-| `time` | Tổng thời gian = build + solve (giây) |
-| `build` | Thời gian **sinh CNF** (mã hoá bài toán thành clauses) |
-| `solve` | Thời gian **solver giải** CNF |
-| `vars` | Số biến Boolean: `n^2` biến gốc + biến phụ do encoding sinh ra |
-| `clauses` | Số mệnh đề (clause) trong CNF |
-| `dec` | **Decisions** - số lần solver tự "đoán" giá trị một biến |
-| `prop` | **Propagations** - số lần lan truyền đơn vị (suy ra biến bắt buộc) |
-| `conf` | **Conflicts** - số lần mâu thuẫn, buộc học clause mới rồi quay lui |
-| `note` | Ghi chú thêm (vd mã thoát khi crash) |
-
-**Log baseline**
-
-| Chỉ số | Ý nghĩa |
-|---|---|
-| `method` | cpsat, mip_scip, mip_cbc, pulp_cbc, gurobi, cplex_mp, cplex_cp |
-| `vars` | Số biến trong mô hình (n^2 ô nhị phân) |
-| `constr` | Số ràng buộc (hàng + cột + đường chéo) |
-| `objective` | Giá trị hàm mục tiêu (0 ở đây; N-Queens là bài toán thoả mãn) |
-
-**Về `dec / prop / conf`.** SAT solver hiện đại chạy theo CDCL: liên tục *quyết
-định* (dec), *suy diễn* (prop), và khi vấp *mâu thuẫn* (conf) thì học clause mới
-rồi quay lui. Các con số này đo "công sức tìm kiếm" nội tại: cùng một `n`,
-encoding/solver càng tốt thì càng ít `dec/prop/conf` và do đó nhanh hơn - giúp
-so sánh chất lượng mã hoá (AMO) tách biệt khỏi tốc độ thô của máy.
-
 
 
 ## Academic licenses (mandatory for large n)
