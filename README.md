@@ -118,12 +118,27 @@ required.
 4. If you cannot reach the campus network, create an **Academic WLS license**
    instead (portable, usable anywhere).
 
+   Put the resulting `gurobi.lic` in the default location
+   (`%USERPROFILE%\gurobi.lic`); it holds your secret and must never be
+   committed (it is already covered by `.gitignore`). WLS licenses need an
+   internet connection while solving.
+
 **CPLEX — IBM Academic Initiative (full version, free):**
 
 1. Go to <https://www.ibm.com/academic> and log in with your university email.
-2. Software → **ILOG CPLEX Optimization Studio** → download and install.
-3. `pip install cplex docplex`, then point docplex at the full install:
-   `docplex config --upgrade "<CPLEX_STUDIO_DIR>"`.
+2. Software → **ILOG CPLEX Optimization Studio** → download and install
+   (default: `C:\Program Files\IBM\ILOG\CPLEX_Studio<VER>`).
+3. `pip install cplex docplex`, then connect the pip packages to the full
+   install (copies the size-unlimited runtimes into the venv):
+
+   ```powershell
+   .\.venv\Scripts\docplex.exe config --upgrade "C:\Program Files\IBM\ILOG\CPLEX_Studio222"
+   ```
+
+   Re-run this command after recreating the virtual environment.
+
+Both `cplex_mp` (MIP) and `cplex_cp` (CP) then solve models well beyond the
+1000-variable Community limit (verified at n = 50).
 
 ## Testing
 
