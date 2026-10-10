@@ -102,6 +102,67 @@ python -m nqueens probe
 > the remaining solvers (CaDiCaL, Glucose, MergeSAT, MiniCard, MiniSat,
 > Lingeling) work. Use `--no-isolate` only for known-good solvers.
 
+## CLI reference
+
+General form: `python -m nqueens <command> [options]` (or the `nqueens`
+command after `pip install -e .`).
+
+### `solve` - solve one instance and print the board
+
+| Option | Type | Default | Meaning |
+|---|---|---|---|
+| `n` | int (positional) | - | Board size n x n (required) |
+| `--encoding` | str | `sequential` | AMO encoding (`pairwise`, `binary`, `commander`, `product`, `sequential`, `pysat_*`) |
+| `--solver` | str | `glucose3` | SAT solver (cadical153, glucose4, mergesat3, minicard, minisat22, lingeling, ...) |
+| `--diagonal` | `naive`\|`optimal` | `optimal` | Diagonal constraint: `naive` = pairwise O(n^4), `optimal` = AMO per diagonal |
+| `--time-limit` | float (s) | `None` | Timeout for the solver subprocess |
+
+### `count` - count all solutions (small n)
+
+| Option | Type | Default | Meaning |
+|---|---|---|---|
+| `n` | int (positional) | - | Board size (required) |
+| `--encoding` | str | `sequential` | AMO encoding |
+| `--solver` | str | `glucose3` | SAT solver |
+| `--diagonal` | `naive`\|`optimal` | `optimal` | Diagonal encoding |
+| `--limit` | int | `None` | Stop after this many solutions (None = count all) |
+
+### `bench` - run an experiment grid and write CSV
+
+| Option | Type | Default | Meaning |
+|---|---|---|---|
+| `--what` | `sat`\|`baselines`\|`all` | `all` | Which part(s) to run |
+| `--ns` | str | `8,10,12,14,16` | Sizes: `8,10,12` (list) or `8:40:2` (start:stop:step) |
+| `--encodings` | list | 5 built-in encodings | AMO encodings to run |
+| `--solvers` | list | `glucose3 cadical153 kissat404` | SAT solvers |
+| `--methods` | list | all 7 baselines | `cpsat mip_scip mip_cbc pulp_cbc gurobi cplex_mp cplex_cp` |
+| `--diagonal` | `naive`\|`optimal` | `optimal` | Diagonal encoding |
+| `--time-limit` | float (s) | `None` | Per-run timeout (SAT subprocess and baselines) |
+| `--repeats` | int | `1` | Repetitions per configuration |
+| `--no-isolate` | flag | off | Run SAT solvers in-process (faster, but a crash aborts the run) |
+| `--quiet` | flag | off | Suppress per-run progress logging |
+| `--sat-out` | path | `results/sat.csv` | Output CSV for SAT results |
+| `--baseline-out` | path | `results/baselines.csv` | Output CSV for baseline results |
+
+### `probe` - check which SAT solvers work here
+
+| Option | Type | Default | Meaning |
+|---|---|---|---|
+| `--solvers` | list | `DEFAULT_SOLVERS` | Solvers to test |
+| `--n` | int | `6` | Small instance used to probe |
+| `--time-limit` | float (s) | `None` (-> 30) | Timeout per solver |
+
+### `plot` - generate figures from CSV results
+
+| Option | Default | Meaning |
+|---|---|---|
+| `--sat` | `results/sat.csv` | SAT results CSV |
+| `--baselines` | `results/baselines.csv` | Baseline results CSV |
+| `--outdir` | `results/figures` | Output directory (`.pdf` + `.png`) |
+
+List-valued options (`--encodings`, `--solvers`, `--methods`) take several
+space-separated values.
+
 ## Metric reference
 
 The benchmark prints one log line per run, e.g.:
