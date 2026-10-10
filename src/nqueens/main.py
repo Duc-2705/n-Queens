@@ -55,17 +55,18 @@ def cmd_count(args):
 
 def cmd_bench(args):
     ns = parse_ns(args.ns)
+    verbose = not args.quiet
     if args.what in ("sat", "all"):
         df = run_sat_bench(ns, encodings=args.encodings,
                            solvers=args.solvers, diagonal_mode=args.diagonal,
                            repeats=args.repeats, isolate=not args.no_isolate,
-                           timeout=args.time_limit)
+                           timeout=args.time_limit, verbose=verbose)
         print("wrote", save(df, args.sat_out))
     if args.what in ("baselines", "all"):
         methods = args.methods or list(BASELINES)
         df = run_baseline_bench(ns, methods=methods,
                                 time_limit=args.time_limit,
-                                repeats=args.repeats)
+                                repeats=args.repeats, verbose=verbose)
         print("wrote", save(df, args.baseline_out))
 
 
@@ -132,6 +133,8 @@ def build_parser():
     p_bench.add_argument("--repeats", type=int, default=1)
     p_bench.add_argument("--no-isolate", action="store_true",
                          help="run SAT solvers in-process (a crash aborts the run)")
+    p_bench.add_argument("--quiet", action="store_true",
+                         help="suppress per-run progress logging")
     p_bench.add_argument("--sat-out", default="results/sat.csv")
     p_bench.add_argument("--baseline-out", default="results/baselines.csv")
     p_bench.set_defaults(func=cmd_bench)
