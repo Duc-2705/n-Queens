@@ -24,6 +24,35 @@ approaches: **MIP/ILP** and **CP** (CPLEX, Gurobi, OR-Tools CP-SAT, CBC/SCIP).
 - **Benchmark harness** writing raw CSV, plus plotting utilities.
 - **Correctness tests**: known solution counts for n = 1..12 and board validity.
 
+## Report and results
+
+Two LaTeX reports (`cas-sc`, Elsevier single-column) are provided:
+
+- English: [`report/en/main.pdf`](report/en/main.pdf)
+- Vietnamese: [`report/vi/main.pdf`](report/vi/main.pdf)
+
+Rebuild the figures/tables and the PDFs:
+
+```powershell
+python scripts/make_report_assets.py          # figures -> report/figures, tables -> report/tables/<lang>
+powershell -ExecutionPolicy Bypass -File scripts/build_reports.ps1
+```
+
+Experiments (n = 8..80 step 2, 3 repetitions, 600 s limit) give the following
+picture on this machine:
+
+- **SAT solver ranking** (median over n >= 40): MiniSat and MiniCard fastest,
+  then CaDiCaL; Glucose is slowest and the only solver that times out.
+- **Encoding x solver interaction**: the pairwise encoding is the most robust
+  and best for weak solvers, while the binary encoding is fastest for strong
+  solvers (MiniSat/MiniCard); product and commander are the weakest for Glucose.
+- **MIP/CP baselines**: Gurobi is by far the fastest (nearly constant runtime),
+  then CPLEX MIP; the best SAT configuration (binary + MiniSat) is competitive
+  with CP-SAT and CPLEX CP but slower than Gurobi and CPLEX MIP.
+
+Raw data: `results/sat.csv`, `results/baselines.csv`; figures:
+`results/figures/` and `report/figures/`.
+
 ## Layout
 
 ```
@@ -36,9 +65,10 @@ n-Queens/
     verify.py             # board checks and solution counting
     baselines/            # OR-Tools, PuLP, Gurobi, CPLEX
     bench.py plot.py main.py
+  scripts/                # make_report_assets.py, build_reports.ps1
   tests/                  # pytest suite
   results/                # raw CSV + figures (generated)
-  report/                 # LaTeX paper (to be added)
+  report/                 # LaTeX paper (cas-sc): en/ + vi/ + figures/ + tables/
   pyproject.toml requirements.txt
 ```
 
