@@ -7,6 +7,9 @@
 \usepackage{graphicx}
 \usepackage{multirow}
 \usepackage{xcolor}
+\usepackage{lastpage}
+
+\AtBeginDocument{\def\lastpage{\csname lastpage@lastpage\endcsname}}
 
 \graphicspath{{../figures/}}
 
@@ -209,7 +212,7 @@ reported; the time limit is 600\,s per run. Two PySAT solvers available on some
 platforms (\texttt{cryptosat}, \texttt{minisatgh}) were not shipped in the
 distribution used here, and \texttt{kissat404} reproducibly crashes on these
 instances; these solvers are therefore excluded. All reported instances are
-satisfiable, so we measure the time to \emph{find} a model rather than to prove
+satisfiable, so we measure the time to find a model rather than to prove
 unsatisfiability.
 
 \subsection{CNF structure}

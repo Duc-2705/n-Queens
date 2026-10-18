@@ -11,6 +11,9 @@
 \usepackage{graphicx}
 \usepackage{multirow}
 \usepackage{xcolor}
+\usepackage{lastpage}
+
+\AtBeginDocument{\def\lastpage{\csname lastpage@lastpage\endcsname}}
 
 \graphicspath{{../figures/}}
 
