@@ -26,9 +26,6 @@ approaches: **MIP/ILP** and **CP** (CPLEX, Gurobi, OR-Tools CP-SAT, CBC/SCIP).
 
 ## Results
 
-The LaTeX report (English and Vietnamese, Elsevier `cas-sc`) lives in a separate
-folder/repository (`../BaoCao`), generated from the CSV data produced here.
-
 Experiments (n = 8..80 step 2, 3 repetitions, 600 s limit) give the following
 picture on this machine:
 
